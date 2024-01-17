@@ -1,0 +1,328 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-info elevation-4">
+    {% if request.user.is_superuser and request.user.is_staff %}
+    <!-- Brand Logo -->
+    <a href="{% url 'admin_home' %}" class="brand-link">
+        <img src="{% static 'dist/img/cmsl.png' %} " alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+        <span class="brand-text font-weight-light">Admin Panel</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ request.user.image}}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{user.get_full_name}}</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    {% url 'admin_home' as admin_home %}
+                    <a href="{{admin_home}}" class="nav-link {% if admin_home == request.path %} active {% endif %}">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Home
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                {# admin_view_profile#}
+                    <a href="#"
+                        class="nav-link  active ">
+                        <i class="nav-icon fas fa-address-card"></i>
+                        <p>
+                            Update Profile
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-bookmark"></i>
+                        <p>
+                            Branch
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            {#'add_branch'#}
+                            <a href="#"
+                                class="nav-link   active ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Add Branch
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+{#                            url 'manage_branches'#}
+{#                            'edit_branches' branches_id#}
+                            <a href="#"
+                                class="nav-link  active ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Manage Branches
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Department
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+{#                            url 'add_subject'#}
+                            <a href="#"
+                                class="nav-link active ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Add Department
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Manage Departments
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-clock"></i>
+                        <p>
+                            Role
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+
+                            <a href="#"
+                                class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Add Role
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Manage Roles
+                                </p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link active">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Add employee
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=""
+                        class="nav-link active">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Manage Employees
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+
+                </li>
+                <li class="nav-item">
+                    <a href=""
+                        class="nav-link active">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>
+                            View Attendance
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=""
+                       class="nav-link active">
+                        <i class="nav-icon fas fa-check-double"></i>
+                        <p>
+                            Employee Leave
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=""
+                       class="nav-link active">
+                        <i class="nav-icon fas fa-bullhorn"></i>
+                        <p>
+                            Notify Employee
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=""
+                       class="nav-link active">
+                        <i class="nav-icon fas fa-comment"></i>
+                        <p>
+                            Employee Feedback
+                        </p>
+                    </a>
+                </li>
+
+                {% else %}
+
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link">
+                    <img src="{% static 'dist/img/AdminLTELogo.png' %} " alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">Employee Panel</span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="{{ request.user.image }}" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="#" class="d-block">{{user.get_full_name}}</a>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+
+                            <li class="nav-item">
+
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-home"></i>
+                                    <p>
+                                        Home
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+
+                                <a href=""
+                                    class="nav-link  active">
+                                    <i class="nav-icon fas fa-address-card"></i>
+                                    <p>
+                                        Update Profile
+
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-poll"></i>
+                                    <p>
+                                        Add Task
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Edit Task
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-calendar-alt"></i>
+                                    <p>
+                                        Attendance
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        View/Update Attendance
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-bell"></i>
+                                    <p>
+                                        View Notifications
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-check"></i>
+                                    <p>
+                                        Apply For Leave
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+
+                                <a href=""
+                                    class="nav-link active">
+                                    <i class="nav-icon fas fa-comment-alt"></i>
+                                    <p>
+                                        Feedback
+                                    </p>
+                                </a>
+                            </li>
+
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="" onclick="return confirm('Your session would be terminated.\n\nProceed?')"
+                                    class="nav-link">
+                                                <i class="nav-icon fas fa-power-off"></i><p>Logout</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!-- /.sidebar-menu -->
+                            </div>
+                            <!-- /.sidebar -->
+</aside>
